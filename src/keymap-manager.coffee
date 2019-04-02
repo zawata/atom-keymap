@@ -1,4 +1,3 @@
-CSON = require 'season'
 fs = require 'fs-plus'
 {isSelectorValid} = require 'clear-cut'
 path = require 'path'
@@ -379,13 +378,13 @@ class KeymapManager
   readKeymap: (filePath, suppressErrors) ->
     if suppressErrors
       try
-        CSON.readFileSync(filePath, allowDuplicateKeys: false)
+        JSON.parse(fs.readFileSync(filePath))
       catch error
         console.warn("Failed to reload key bindings file: #{filePath}", error.stack ? error)
         @emitter.emit 'did-fail-to-read-file', error
         undefined
     else
-      CSON.readFileSync(filePath, allowDuplicateKeys: false)
+      JSON.parse(fs.readFileSync(filePath))
 
   # Determine if the given path should be loaded on this platform. If the
   # filename has the pattern '<platform>.cson' or 'foo.<platform>.cson' and

@@ -29,8 +29,7 @@
     "grim": "^1.2.1",
     "keyboard-layout": "2.0.13",
     "pathwatcher": "^7.0.0",
-    "property-accessors": "^1",
-    "season": "^6.0.0"
+    "property-accessors": "^1"
   },
   "devDependencies": {
     "babel-cli": "6.5.1",
