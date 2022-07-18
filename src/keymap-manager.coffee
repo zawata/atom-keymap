@@ -2,7 +2,6 @@ CSON = require 'season'
 fs = require 'fs-plus'
 {isSelectorValid} = require 'clear-cut'
 path = require 'path'
-{File} = require 'pathwatcher'
 {Emitter, Disposable, CompositeDisposable} = require 'event-kit'
 {KeyBinding, MATCH_TYPES} = require './key-binding'
 CommandEvent = require './command-event'
@@ -179,16 +178,6 @@ class KeymapManager
   onDidFailToMatchBinding: (callback) ->
     @emitter.on 'did-fail-to-match-binding', callback
 
-  # Invoke the given callback when a keymap file is reloaded.
-  #
-  # * `callback` {Function} to be called when a keymap file is reloaded.
-  #   * `event` {Object} with the following keys:
-  #     * `path` {String} representing the path of the reloaded keymap file.
-  #
-  # Returns a {Disposable} on which `.dispose()` can be called to unsubscribe.
-  onDidReloadKeymap: (callback) ->
-    @emitter.on 'did-reload-keymap', callback
-
   # Invoke the given callback when a keymap file is unloaded.
   #
   # * `callback` {Function} to be called when a keymap file is unloaded.
@@ -323,8 +312,6 @@ class KeymapManager
   # * `path` A {String} containing a path to a file or a directory. If the path is
   #   a directory, all files inside it will be loaded.
   # * `options` An {Object} containing the following optional keys:
-  #   * `watch` If `true`, the keymap will also reload the file at the given
-  #     path whenever it changes. This option cannot be used with directory paths.
   #   * `priority` A {Number} used to sort keybindings which have the same
   #     specificity.
   loadKeymap: (bindingsPath, options) ->
@@ -335,46 +322,8 @@ class KeymapManager
           @loadKeymap(filePath, checkIfDirectory: false)
     else
       @add(bindingsPath, @readKeymap(bindingsPath, options?.suppressErrors), options?.priority)
-      @watchKeymap(bindingsPath, options) if options?.watch
 
     undefined
-
-  # Public: Cause the keymap to reload the key bindings file at the given path
-  # whenever it changes.
-  #
-  # This method doesn't perform the initial load of the key bindings file. If
-  # that's what you're looking for, call {::loadKeymap} with `watch: true`.
-  #
-  # * `path` A {String} containing a path to a file or a directory. If the path is
-  #   a directory, all files inside it will be loaded.
-  # * `options` An {Object} containing the following optional keys:
-  #   * `priority` A {Number} used to sort keybindings which have the same
-  #     specificity.
-  watchKeymap: (filePath, options) ->
-    if not @watchSubscriptions[filePath]? or @watchSubscriptions[filePath].disposed
-      file = new File(filePath)
-      reloadKeymap = => @reloadKeymap(filePath, options)
-      @watchSubscriptions[filePath] = new CompositeDisposable(
-        file.onDidChange(reloadKeymap)
-        file.onDidRename(reloadKeymap)
-        file.onDidDelete(reloadKeymap)
-      )
-
-    undefined
-
-  # Called by the path watcher callback to reload a file at the given path. If
-  # we can't read the file cleanly, we don't proceed with the reload.
-  reloadKeymap: (filePath, options) ->
-    if fs.isFileSync(filePath)
-      bindings = @readKeymap(filePath, true)
-
-      if typeof bindings isnt "undefined"
-        @removeBindingsFromSource(filePath)
-        @add(filePath, bindings, options?.priority)
-        @emitter.emit 'did-reload-keymap', {path: filePath}
-    else
-      @removeBindingsFromSource(filePath)
-      @emitter.emit 'did-unload-keymap', {path: filePath}
 
   readKeymap: (filePath, suppressErrors) ->
     if suppressErrors
