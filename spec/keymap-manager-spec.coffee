@@ -3,7 +3,7 @@ debounce = require 'debounce'
 fs = require 'fs-plus'
 path = require 'path'
 temp = require 'temp'
-KeyboardLayout = require('keyboard-layout')
+KeyboardLayout = require('@axosoft/keyboard-layout')
 KeymapManager = require '../src/keymap-manager'
 {appendContent, stub, getFakeClock, mockProcessPlatform, buildKeydownEvent, buildKeyupEvent} = require './helpers/helpers'
 
