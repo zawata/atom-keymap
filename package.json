@@ -1,6 +1,6 @@
 {
   "name": "@axosoft/atom-keymap",
-  "version": "8.2.15-gitkraken.3",
+  "version": "8.2.15-gitkraken.4",
   "description": "Atom's DOM-aware keymap module",
   "main": "./lib/keymap-manager",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@axosoft/keyboard-layout": "^2.0.19-gk.1",
+    "@axosoft/keyboard-layout": "^2.0.20-gk.1",
     "clear-cut": "^2",
     "emissary": "^1.1.0",
     "event-kit": "^1.0.0",
