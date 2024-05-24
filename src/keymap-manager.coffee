@@ -1,7 +1,4 @@
-CSON = require 'season'
-fs = require 'fs-plus'
 {isSelectorValid} = require 'clear-cut'
-path = require 'path'
 {Emitter, Disposable, CompositeDisposable} = require 'event-kit'
 {KeyBinding, MATCH_TYPES} = require './key-binding'
 CommandEvent = require './command-event'
@@ -131,75 +128,6 @@ class KeymapManager
     return
 
   ###
-  Section: Event Subscription
-  ###
-
-  # Public: Invoke the given callback when one or more keystrokes completely
-  # match a key binding.
-  #
-  # * `callback` {Function} to be called when keystrokes match a binding.
-  #   * `event` {Object} with the following keys:
-  #     * `keystrokes` {String} of keystrokes that matched the binding.
-  #     * `binding` {KeyBinding} that the keystrokes matched.
-  #     * `keyboardEventTarget` DOM element that was the target of the most
-  #        recent keyboard event.
-  #
-  # Returns a {Disposable} on which `.dispose()` can be called to unsubscribe.
-  onDidMatchBinding: (callback) ->
-    @emitter.on 'did-match-binding', callback
-
-  # Public: Invoke the given callback when one or more keystrokes partially
-  # match a binding.
-  #
-  # * `callback` {Function} to be called when keystrokes partially match a
-  #   binding.
-  #   * `event` {Object} with the following keys:
-  #     * `keystrokes` {String} of keystrokes that matched the binding.
-  #     * `partiallyMatchedBindings` {KeyBinding}s that the keystrokes partially
-  #       matched.
-  #     * `keyboardEventTarget` DOM element that was the target of the most
-  #       recent keyboard event.
-  #
-  # Returns a {Disposable} on which `.dispose()` can be called to unsubscribe.
-  onDidPartiallyMatchBindings: (callback) ->
-    @emitter.on 'did-partially-match-binding', callback
-
-  # Public: Invoke the given callback when one or more keystrokes fail to match
-  # any bindings.
-  #
-  # * `callback` {Function} to be called when keystrokes fail to match any
-  #   bindings.
-  #   * `event` {Object} with the following keys:
-  #     * `keystrokes` {String} of keystrokes that matched the binding.
-  #     * `keyboardEventTarget` DOM element that was the target of the most
-  #        recent keyboard event.
-  #
-  # Returns a {Disposable} on which `.dispose()` can be called to unsubscribe.
-  onDidFailToMatchBinding: (callback) ->
-    @emitter.on 'did-fail-to-match-binding', callback
-
-  # Invoke the given callback when a keymap file is unloaded.
-  #
-  # * `callback` {Function} to be called when a keymap file is unloaded.
-  #   * `event` {Object} with the following keys:
-  #     * `path` {String} representing the path of the unloaded keymap file.
-  #
-  # Returns a {Disposable} on which `.dispose()` can be called to unsubscribe.
-  onDidUnloadKeymap: (callback) ->
-    @emitter.on 'did-unload-keymap', callback
-
-  # Public: Invoke the given callback when a keymap file not able to be loaded.
-  #
-  # * `callback` {Function} to be called when a keymap file is unloaded.
-  #   * `error` {Object} with the following keys:
-  #     * `message` {String} the error message.
-  #     * `stack` {String} the error stack trace.
-  #
-  # Returns a {Disposable} on which `.dispose()` can be called to unsubscribe.
-  onDidFailToReadFile: (callback) ->
-    @emitter.on 'did-fail-to-read-file', callback
-
-  ###
   Section: Adding and Removing Bindings
   ###
 
@@ -302,49 +230,6 @@ class KeymapManager
         element = element.parentElement
     bindings
 
-
-  ###
-  Section: Managing Keymap Files
-  ###
-
-  # Public: Load the key bindings from the given path.
-  #
-  # * `path` A {String} containing a path to a file or a directory. If the path is
-  #   a directory, all files inside it will be loaded.
-  # * `options` An {Object} containing the following optional keys:
-  #   * `priority` A {Number} used to sort keybindings which have the same
-  #     specificity.
-  loadKeymap: (bindingsPath, options) ->
-    checkIfDirectory = options?.checkIfDirectory ? true
-    if checkIfDirectory and fs.isDirectorySync(bindingsPath)
-      for filePath in fs.listSync(bindingsPath, ['.cson', '.json'])
-        if @filePathMatchesPlatform(filePath)
-          @loadKeymap(filePath, checkIfDirectory: false)
-    else
-      @add(bindingsPath, @readKeymap(bindingsPath, options?.suppressErrors), options?.priority)
-
-    undefined
-
-  readKeymap: (filePath, suppressErrors) ->
-    if suppressErrors
-      try
-        CSON.readFileSync(filePath, allowDuplicateKeys: false)
-      catch error
-        console.warn("Failed to reload key bindings file: #{filePath}", error.stack ? error)
-        @emitter.emit 'did-fail-to-read-file', error
-        undefined
-    else
-      CSON.readFileSync(filePath, allowDuplicateKeys: false)
-
-  # Determine if the given path should be loaded on this platform. If the
-  # filename has the pattern '<platform>.cson' or 'foo.<platform>.cson' and
-  # <platform> does not match the current platform, returns false. Otherwise
-  # returns true.
-  filePathMatchesPlatform: (filePath) ->
-    otherPlatforms = @getOtherPlatforms()
-    for component in path.basename(filePath).split('.')[0...-1]
-      return false if component in otherPlatforms
-    true
 
   ###
   Section: Managing Keyboard Events
