@@ -274,16 +274,6 @@ exports.keystrokeForKeyboardEvent = (event, customKeystrokeResolvers) ->
 
   keystroke = normalizeKeystroke("^#{keystroke}") if event.type is 'keyup'
 
-  if customKeystrokeResolvers?
-    for resolver in customKeystrokeResolvers
-      customKeystroke = resolver({
-        keystroke, event,
-        layoutName: KeyboardLayout.getCurrentKeyboardLayout(),
-        keymap: KeyboardLayout.getCurrentKeymap()
-      })
-      if customKeystroke
-        keystroke = normalizeKeystroke(customKeystroke)
-
   keystroke
 
 nonAltModifiedKeyForKeyboardEvent = (event) ->
