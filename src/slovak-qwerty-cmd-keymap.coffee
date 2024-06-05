@@ -1,266 +1,266 @@
 module.exports = {
   "KeyA": {
-    "unmodified": "a",
+    "value": "a",
     "withShift": "A"
   },
   "KeyB": {
-    "unmodified": "b",
+    "value": "b",
     "withShift": "B"
   },
   "KeyC": {
-    "unmodified": "c",
+    "value": "c",
     "withShift": "C"
   },
   "KeyD": {
-    "unmodified": "d",
+    "value": "d",
     "withShift": "D"
   },
   "KeyE": {
-    "unmodified": "e",
+    "value": "e",
     "withShift": "E"
   },
   "KeyF": {
-    "unmodified": "f",
+    "value": "f",
     "withShift": "F"
   },
   "KeyG": {
-    "unmodified": "g",
+    "value": "g",
     "withShift": "G"
   },
   "KeyH": {
-    "unmodified": "h",
+    "value": "h",
     "withShift": "H"
   },
   "KeyI": {
-    "unmodified": "i",
+    "value": "i",
     "withShift": "I"
   },
   "KeyJ": {
-    "unmodified": "j",
+    "value": "j",
     "withShift": "J"
   },
   "KeyK": {
-    "unmodified": "k",
+    "value": "k",
     "withShift": "K"
   },
   "KeyL": {
-    "unmodified": "l",
+    "value": "l",
     "withShift": "L"
   },
   "KeyM": {
-    "unmodified": "m",
+    "value": "m",
     "withShift": "M"
   },
   "KeyN": {
-    "unmodified": "n",
+    "value": "n",
     "withShift": "N"
   },
   "KeyO": {
-    "unmodified": "o",
+    "value": "o",
     "withShift": "O"
   },
   "KeyP": {
-    "unmodified": "p",
+    "value": "p",
     "withShift": "P"
   },
   "KeyQ": {
-    "unmodified": "q",
+    "value": "q",
     "withShift": "Q"
   },
   "KeyR": {
-    "unmodified": "r",
+    "value": "r",
     "withShift": "R"
   },
   "KeyS": {
-    "unmodified": "s",
+    "value": "s",
     "withShift": "S"
   },
   "KeyT": {
-    "unmodified": "t",
+    "value": "t",
     "withShift": "T"
   },
   "KeyU": {
-    "unmodified": "u",
+    "value": "u",
     "withShift": "U"
   },
   "KeyV": {
-    "unmodified": "v",
+    "value": "v",
     "withShift": "V"
   },
   "KeyW": {
-    "unmodified": "w",
+    "value": "w",
     "withShift": "W"
   },
   "KeyX": {
-    "unmodified": "x",
+    "value": "x",
     "withShift": "X"
   },
   "KeyY": {
-    "unmodified": "y",
+    "value": "y",
     "withShift": "Y"
   },
   "KeyZ": {
-    "unmodified": "z",
+    "value": "z",
     "withShift": "Z"
   },
   "Digit1": {
-    "unmodified": "1",
+    "value": "1",
     "withShift": "!"
   },
   "Digit2": {
-    "unmodified": "2",
+    "value": "2",
     "withShift": "@"
   },
   "Digit3": {
-    "unmodified": "3",
+    "value": "3",
     "withShift": "#"
   },
   "Digit4": {
-    "unmodified": "4",
+    "value": "4",
     "withShift": "$"
   },
   "Digit5": {
-    "unmodified": "5",
+    "value": "5",
     "withShift": "%"
   },
   "Digit6": {
-    "unmodified": "6",
+    "value": "6",
     "withShift": "^"
   },
   "Digit7": {
-    "unmodified": "7",
+    "value": "7",
     "withShift": "&"
   },
   "Digit8": {
-    "unmodified": "8",
+    "value": "8",
     "withShift": "*"
   },
   "Digit9": {
-    "unmodified": "9",
+    "value": "9",
     "withShift": "("
   },
   "Digit0": {
-    "unmodified": "0",
+    "value": "0",
     "withShift": ")"
   },
   "Space": {
-    "unmodified": " ",
+    "value": " ",
     "withShift": " "
   },
   "Minus": {
-    "unmodified": "=",
+    "value": "=",
     "withShift": null # TODO: What is this?
   },
   "Equal": {
-    "unmodified": "/",
+    "value": "/",
     "withShift": null # TODO: What is this?
   },
   "BracketLeft": {
-    "unmodified": "[",
+    "value": "[",
     "withShift": "{"
   },
   "BracketRight": {
-    "unmodified": "]",
+    "value": "]",
     "withShift": "}"
   },
   "Backslash": {
-    "unmodified": "`",
+    "value": "`",
     "withShift": null # TODO: What is this?
   },
   "Semicolon": {
-    "unmodified": ";",
+    "value": ";",
     "withShift": ":"
   },
   "Quote": {
-    "unmodified": "'",
+    "value": "'",
     "withShift": "\""
   },
   "Backquote": {
-    "unmodified": "\\",
+    "value": "\\",
     "withShift": null # TODO: What is this?
   },
   "Comma": {
-    "unmodified": ",",
+    "value": ",",
     "withShift": "<"
   },
   "Period": {
-    "unmodified": ".",
+    "value": ".",
     "withShift": ">"
   },
   "Slash": {
-    "unmodified": "-",
+    "value": "-",
     "withShift": null # TODO: What is this?
   },
   "NumpadDivide": {
-    "unmodified": "/",
+    "value": "/",
     "withShift": "/"
   },
   "NumpadMultiply": {
-    "unmodified": "*",
+    "value": "*",
     "withShift": "*"
   },
   "NumpadSubtract": {
-    "unmodified": "-",
+    "value": "-",
     "withShift": "-"
   },
   "NumpadAdd": {
-    "unmodified": "+",
+    "value": "+",
     "withShift": "+"
   },
   "Numpad1": {
-    "unmodified": "1",
+    "value": "1",
     "withShift": "1"
   },
   "Numpad2": {
-    "unmodified": "2",
+    "value": "2",
     "withShift": "2"
   },
   "Numpad3": {
-    "unmodified": "3",
+    "value": "3",
     "withShift": "3"
   },
   "Numpad4": {
-    "unmodified": "4",
+    "value": "4",
     "withShift": "4"
   },
   "Numpad5": {
-    "unmodified": "5",
+    "value": "5",
     "withShift": "5"
   },
   "Numpad6": {
-    "unmodified": "6",
+    "value": "6",
     "withShift": "6"
   },
   "Numpad7": {
-    "unmodified": "7",
+    "value": "7",
     "withShift": "7"
   },
   "Numpad8": {
-    "unmodified": "8",
+    "value": "8",
     "withShift": "8"
   },
   "Numpad9": {
-    "unmodified": "9",
+    "value": "9",
     "withShift": "9"
   },
   "Numpad0": {
-    "unmodified": "0",
+    "value": "0",
     "withShift": "0"
   },
   "NumpadDecimal": {
-    "unmodified": ".",
+    "value": ".",
     "withShift": "."
   },
   "IntlBackslash": {
-    "unmodified": "§",
+    "value": "§",
     "withShift": "±"
   },
   "NumpadEqual": {
-    "unmodified": "=",
+    "value": "=",
     "withShift": "="
   },
   "AudioVolumeUp": {
-    "unmodified": null,
+    "value": null,
     "withShift": "="
   }
 }

@@ -728,8 +728,8 @@ describe "KeymapManager", ->
     describe "when the Dvorak QWERTY-⌘ layout is in use on macOS", ->
       it "uses the US layout equivalent when the command key is held down", ->
         mockProcessPlatform('darwin')
-        stub(KeyboardLayout, 'getCurrentKeymap', -> require('./helpers/keymaps/mac-dvorak-qwerty-cmd'))
-        stub(KeyboardLayout, 'getCurrentKeyboardLayout', -> 'com.apple.keylayout.DVORAK-QWERTYCMD')
+        stub(KeyboardLayout, 'getKeyMap', -> require('./helpers/keymaps/mac-dvorak-qwerty-cmd'))
+        stub(KeyboardLayout, 'getCurrentKeyboardLayout', -> {id: 'com.apple.keylayout.DVORAK-QWERTYCMD'})
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', altKey: true})), 'alt-l')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', ctrlKey: true, altKey: true})), 'ctrl-alt-l')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', metaKey: true})), 'cmd-p')
@@ -738,8 +738,8 @@ describe "KeymapManager", ->
     describe "when a custom Dvorak QWERTY-⌘ layout is in use on macOS", ->
       it "uses the US layout equivalent when the command key is held down", ->
         mockProcessPlatform('darwin')
-        stub(KeyboardLayout, 'getCurrentKeymap', -> require('./helpers/keymaps/mac-dvorak-qwerty-cmd'))
-        stub(KeyboardLayout, 'getCurrentKeyboardLayout', -> 'org.unknown.keylayout.DVORAK-QWERTYCMD')
+        stub(KeyboardLayout, 'getKeyMap', -> require('./helpers/keymaps/mac-dvorak-qwerty-cmd'))
+        stub(KeyboardLayout, 'getCurrentKeyboardLayout', -> {id: 'org.unknown.keylayout.DVORAK-QWERTYCMD'})
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', altKey: true})), 'alt-l')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', ctrlKey: true, altKey: true})), 'ctrl-alt-l')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', metaKey: true})), 'cmd-p')
@@ -748,7 +748,7 @@ describe "KeymapManager", ->
     describe "when the current system keymap cannot be obtained on macOS", ->
       it "does not throw exceptions and just takes the current key value", ->
         mockProcessPlatform('darwin')
-        stub(KeyboardLayout, 'getCurrentKeymap', -> null)
+        stub(KeyboardLayout, 'getKeyMap', -> null)
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: '@', code: 'KeyG', modifierState: {AltGraph: true}})), '@')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'Dead', code: 'KeyU', modifierState: {AltGraph: true}})), 'alt-dead')
 
@@ -757,7 +757,7 @@ describe "KeymapManager", ->
 
       beforeEach ->
         currentKeymap = null
-        stub(KeyboardLayout, 'getCurrentKeymap', -> currentKeymap)
+        stub(KeyboardLayout, 'getKeyMap', -> currentKeymap)
 
       it "correctly resolves to AltGraph to ctrl-alt when key is AltGraph on Windows", ->
         mockProcessPlatform('win32')

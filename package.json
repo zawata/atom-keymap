@@ -22,11 +22,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@axosoft/keyboard-layout": "^2.0.20-gk.1",
     "clear-cut": "^2",
     "emissary": "^1.1.0",
     "event-kit": "^1.0.0",
     "grim": "^1.2.1",
+    "native-keymap": "^3.3.5",
     "property-accessors": "^1"
   },
   "devDependencies": {
