@@ -231,7 +231,7 @@ exports.keystrokeForKeyboardEvent = (event) ->
       # or when using the dvorak-qwertycmd layout and holding down the command key.
       # if (key.length is 1 and not isLatinKeymap(NativeKeymap.getKeyMap())) or
       if (not isLatinKeymap(NativeKeymap.getKeyMap())) or
-         (metaKey and currentLayout.indexOf('DVORAK-QWERTYCMD') > -1)
+         (metaKey and currentLayoutName.indexOf('DVORAK-QWERTYCMD') > -1)
         usCharactersForKeyCode(event.code)
       # As of Chromium ~62, KeyboardEvent.key is now sent in its un-shifted
       # for writing system characters (`8` vs `*`) so we need to manually
