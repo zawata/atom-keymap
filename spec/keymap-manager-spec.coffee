@@ -3,7 +3,7 @@ debounce = require 'debounce'
 fs = require 'fs-plus'
 path = require 'path'
 temp = require 'temp'
-KeyboardLayout = require('@axosoft/keyboard-layout')
+NativeKeymap = require 'native-keymap'
 KeymapManager = require '../src/keymap-manager'
 {appendContent, stub, getFakeClock, mockProcessPlatform, buildKeydownEvent, buildKeyupEvent} = require './helpers/helpers'
 
@@ -696,6 +696,7 @@ describe "KeymapManager", ->
     describe "when the KeyboardEvent.key is '' but the KeyboardEvent.code is 'NumpadDecimal' and getModifierState('NumLock') returns false", ->
       it "translates as delete to work around a Chrome bug on Linux", ->
         mockProcessPlatform('linux')
+        stub(NativeKeymap, 'getKeyMap', -> {NumpadDecimal: {value: '.'}})
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: '.', code: 'NumpadDecimal', modifierState: {NumLock: true}})), '.')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: '', code: 'NumpadDecimal', modifierState: {NumLock: false}})), 'delete')
 
@@ -728,8 +729,8 @@ describe "KeymapManager", ->
     describe "when the Dvorak QWERTY-⌘ layout is in use on macOS", ->
       it "uses the US layout equivalent when the command key is held down", ->
         mockProcessPlatform('darwin')
-        stub(KeyboardLayout, 'getCurrentKeymap', -> require('./helpers/keymaps/mac-dvorak-qwerty-cmd'))
-        stub(KeyboardLayout, 'getCurrentKeyboardLayout', -> 'com.apple.keylayout.DVORAK-QWERTYCMD')
+        stub(NativeKeymap, 'getKeyMap', -> require('./helpers/keymaps/mac-dvorak-qwerty-cmd'))
+        stub(NativeKeymap, 'getCurrentKeyboardLayout', -> {id: 'com.apple.keylayout.DVORAK-QWERTYCMD'})
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', altKey: true})), 'alt-l')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', ctrlKey: true, altKey: true})), 'ctrl-alt-l')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', metaKey: true})), 'cmd-p')
@@ -738,8 +739,8 @@ describe "KeymapManager", ->
     describe "when a custom Dvorak QWERTY-⌘ layout is in use on macOS", ->
       it "uses the US layout equivalent when the command key is held down", ->
         mockProcessPlatform('darwin')
-        stub(KeyboardLayout, 'getCurrentKeymap', -> require('./helpers/keymaps/mac-dvorak-qwerty-cmd'))
-        stub(KeyboardLayout, 'getCurrentKeyboardLayout', -> 'org.unknown.keylayout.DVORAK-QWERTYCMD')
+        stub(NativeKeymap, 'getKeyMap', -> require('./helpers/keymaps/mac-dvorak-qwerty-cmd'))
+        stub(NativeKeymap, 'getCurrentKeyboardLayout', -> {id: 'org.unknown.keylayout.DVORAK-QWERTYCMD'})
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', altKey: true})), 'alt-l')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', ctrlKey: true, altKey: true})), 'ctrl-alt-l')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'l', code: 'KeyP', metaKey: true})), 'cmd-p')
@@ -748,7 +749,7 @@ describe "KeymapManager", ->
     describe "when the current system keymap cannot be obtained on macOS", ->
       it "does not throw exceptions and just takes the current key value", ->
         mockProcessPlatform('darwin')
-        stub(KeyboardLayout, 'getCurrentKeymap', -> null)
+        stub(NativeKeymap, 'getKeyMap', -> null)
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: '@', code: 'KeyG', modifierState: {AltGraph: true}})), '@')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'Dead', code: 'KeyU', modifierState: {AltGraph: true}})), 'alt-dead')
 
@@ -757,7 +758,7 @@ describe "KeymapManager", ->
 
       beforeEach ->
         currentKeymap = null
-        stub(KeyboardLayout, 'getCurrentKeymap', -> currentKeymap)
+        stub(NativeKeymap, 'getKeyMap', -> currentKeymap)
 
       it "correctly resolves to AltGraph to ctrl-alt when key is AltGraph on Windows", ->
         mockProcessPlatform('win32')
@@ -841,44 +842,6 @@ describe "KeymapManager", ->
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'Dead', code: 'BracketRight', shiftKey: true})), 'shift-dead')
         assert.equal(keymapManager.keystrokeForKeyboardEvent(buildKeydownEvent({key: 'Dead', code: 'BracketRight', ctrlKey: true, altKey: true, shiftKey: true})), 'ctrl-alt-shift-dead')
 
-    describe "when custom keystroke resolvers are installed", ->
-      it "resolves to the keystroke string of the most recently-installed resolver returning a defined value", ->
-        mockProcessPlatform('darwin')
-        currentKeymap = require('./helpers/keymaps/mac-swiss-german')
-        currentLayoutName = 'com.apple.keylayout.SwissGerman'
-        stub(KeyboardLayout, 'getCurrentKeymap', -> currentKeymap)
-        stub(KeyboardLayout, 'getCurrentKeyboardLayout', -> currentLayoutName)
-
-        keydownEvent = buildKeydownEvent({key: '@', code: 'KeyG', ctrlKey: true, altKey: true})
-        disposable1 = keymapManager.addKeystrokeResolver(({keystroke, event, layoutName, keymap}) ->
-          assert.equal(keystroke, 'ctrl-alt-g')
-          assert.equal(event, keydownEvent)
-          assert.equal(layoutName, currentLayoutName)
-          assert.equal(keymap, currentKeymap)
-
-          # simulate the user wishing to honor the alt-modified character in the presence of other modifiers
-          'ctrl-@'
-        )
-        assert.equal(keymapManager.keystrokeForKeyboardEvent(keydownEvent), 'ctrl-@')
-
-        # Test that multiple keytsroke resolvers cascade
-        disposable2 = keymapManager.addKeystrokeResolver(({keystroke}) ->
-          assert.equal(keystroke, 'ctrl-@')
-          # Ensure that we normalize the returned custom keystroke resolved
-          'alt-ctrl-X'
-        )
-        expectedKeystroke = 'ctrl-alt-shift-X'
-        disposable3 = keymapManager.addKeystrokeResolver(({keystroke}) ->
-          assert.equal(keystroke, expectedKeystroke)
-          null
-        )
-        assert.equal(keymapManager.keystrokeForKeyboardEvent(keydownEvent), expectedKeystroke)
-
-        # Test that keystroke resolvers can be disposed
-        disposable2.dispose()
-        expectedKeystroke = 'ctrl-@'
-        assert.equal(keymapManager.keystrokeForKeyboardEvent(keydownEvent), expectedKeystroke)
-
   describe "::findKeyBindings({command, target, keystrokes})", ->
     [elementA, elementB] = []
     beforeEach ->
@@ -918,107 +881,3 @@ describe "KeymapManager", ->
       it "returns all bindings that would invoke the given command from the given target element, ordered by specificity", ->
         keystrokes = keymapManager.findKeyBindings(command: 'x', target: elementB).map((b) -> b.keystrokes)
         assert.deepEqual(keystrokes, ['ctrl-d', 'ctrl-c', 'ctrl-a'])
-
-  describe "::loadKeymap(path, options)", ->
-    @timeout(5000)
-
-    beforeEach ->
-      getFakeClock().uninstall()
-
-    describe "if called with a file path", ->
-      it "loads the keybindings from the file at the given path", ->
-        keymapManager.loadKeymap(path.join(__dirname, 'fixtures', 'a.cson'))
-        assert.equal(keymapManager.findKeyBindings(command: 'x').length, 1)
-
-    describe "if called with a directory path", ->
-      it "loads all platform compatible keybindings files in the directory", ->
-        stub(keymapManager, 'getOtherPlatforms').returns(['os2'])
-
-        keymapManager.loadKeymap(path.join(__dirname, 'fixtures'))
-        assert.equal(keymapManager.findKeyBindings(command: 'x').length, 1)
-        assert.equal(keymapManager.findKeyBindings(command: 'y').length, 1)
-        assert.equal(keymapManager.findKeyBindings(command: 'z').length, 1)
-        assert.equal(keymapManager.findKeyBindings(command: 'X').length, 0)
-        assert.equal(keymapManager.findKeyBindings(command: 'Y').length, 0)
-
-  describe "events", ->
-    it "emits `matched` when a key binding matches an event", ->
-      handler = stub()
-      keymapManager.onDidMatchBinding handler
-      keymapManager.add "test",
-        "body":
-          "ctrl-x": "used-command"
-        "*":
-          "ctrl-x": "unused-command"
-        ".not-in-the-dom":
-          "ctrl-x": "unmached-command"
-
-      keymapManager.handleKeyboardEvent(buildKeydownEvent(key: 'x', ctrlKey: true, target: document.body))
-      assert.equal(handler.callCount, 1)
-
-      {keystrokes, binding, keyboardEventTarget} = handler.firstCall.args[0]
-      assert.equal(keystrokes, 'ctrl-x')
-      assert.equal(binding.command, 'used-command')
-      assert.equal(keyboardEventTarget, document.body)
-
-    it "emits `matched-partially` when a key binding partially matches an event", ->
-      handler = stub()
-      keymapManager.onDidPartiallyMatchBindings handler
-      keymapManager.add "test",
-        "body":
-          "ctrl-x 1": "command-1"
-          "ctrl-x 2": "command-2"
-          "a c ^c ^a": "command-3"
-
-      keymapManager.handleKeyboardEvent(buildKeydownEvent(key: 'x', ctrlKey: true, target: document.body))
-      assert.equal(handler.callCount, 1)
-
-      {keystrokes, partiallyMatchedBindings, keyboardEventTarget} = handler.firstCall.args[0]
-      assert.equal(keystrokes, 'ctrl-x')
-      assert.equal(partiallyMatchedBindings.length, 2)
-      assert.deepEqual(partiallyMatchedBindings.map(({command}) -> command), ['command-1', 'command-2'])
-      assert.equal(keyboardEventTarget, document.body)
-
-    it "emits `matched-partially` when a key binding that contains keyup keystrokes partially matches an event", ->
-      handler = stub()
-      keymapManager.onDidPartiallyMatchBindings handler
-      keymapManager.add "test",
-        "body":
-          "a c ^c ^a": "command-1"
-
-      keymapManager.handleKeyboardEvent(buildKeydownEvent(key: 'a', target: document.body))
-      keymapManager.handleKeyboardEvent(buildKeydownEvent(key: 'c', target: document.body))
-      assert(handler.callCount > 0)
-
-      {keystrokes, partiallyMatchedBindings, keyboardEventTarget} = handler.firstCall.args[0]
-      assert.equal(keystrokes, 'a')
-
-      {keystrokes, partiallyMatchedBindings, keyboardEventTarget} = handler.getCall(1).args[0]
-      assert.equal(keystrokes, 'a c')
-      assert.equal(partiallyMatchedBindings.length, 1)
-      assert.deepEqual(partiallyMatchedBindings.map(({command}) -> command), ['command-1'])
-      assert.equal(keyboardEventTarget, document.body)
-
-      handler.reset()
-      keymapManager.handleKeyboardEvent(buildKeyupEvent(key: 'c', target: document.body))
-      assert.equal(handler.callCount, 1)
-
-      {keystrokes, partiallyMatchedBindings, keyboardEventTarget} = handler.firstCall.args[0]
-      assert.equal(keystrokes, 'a c ^c')
-      assert.equal(partiallyMatchedBindings.length, 1)
-      assert.deepEqual(partiallyMatchedBindings.map(({command}) -> command), ['command-1'])
-      assert.equal(keyboardEventTarget, document.body)
-
-    it "emits `match-failed` when no key bindings match the event", ->
-      handler = stub()
-      keymapManager.onDidFailToMatchBinding handler
-      keymapManager.add "test",
-        "body":
-          "ctrl-x": "command"
-
-      keymapManager.handleKeyboardEvent(buildKeydownEvent(key: 'y', ctrlKey: true, target: document.body))
-      assert.equal(handler.callCount, 1)
-
-      {keystrokes, keyboardEventTarget} = handler.firstCall.args[0]
-      assert.equal(keystrokes, 'ctrl-y')
-      assert.equal(keyboardEventTarget, document.body)

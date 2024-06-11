@@ -1,398 +1,398 @@
 {
   "KeyA": {
-    "unmodified": "u",
+    "value": "u",
     "withShift": "U",
-    "withAltGraph": "",
-    "withAltGraphShift": "Ë"
+    "withAltGr": "",
+    "withShiftAltGr": "Ë"
   },
   "KeyB": {
-    "unmodified": "ç",
+    "value": "ç",
     "withShift": "Ç",
-    "withAltGraph": "¯",
-    "withAltGraphShift": "˙"
+    "withAltGr": "¯",
+    "withShiftAltGr": "˙"
   },
   "KeyC": {
-    "unmodified": "v",
+    "value": "v",
     "withShift": "V",
-    "withAltGraph": "√",
-    "withAltGraphShift": "◊"
+    "withAltGr": "√",
+    "withShiftAltGr": "◊"
   },
   "KeyD": {
-    "unmodified": "e",
+    "value": "e",
     "withShift": "E",
-    "withAltGraph": null,
-    "withAltGraphShift": "‰"
+    "withAltGr": null,
+    "withShiftAltGr": "‰"
   },
   "KeyE": {
-    "unmodified": "ğ",
+    "value": "ğ",
     "withShift": "Ğ",
-    "withAltGraph": "#",
-    "withAltGraphShift": "´"
+    "withAltGr": "#",
+    "withShiftAltGr": "´"
   },
   "KeyF": {
-    "unmodified": "a",
+    "value": "a",
     "withShift": "A",
-    "withAltGraph": "å",
-    "withAltGraphShift": "Å"
+    "withAltGr": "å",
+    "withShiftAltGr": "Å"
   },
   "KeyG": {
-    "unmodified": "ü",
+    "value": "ü",
     "withShift": "Ü",
-    "withAltGraph": "@",
-    "withAltGraphShift": "ª"
+    "withAltGr": "@",
+    "withShiftAltGr": "ª"
   },
   "KeyH": {
-    "unmodified": "t",
+    "value": "t",
     "withShift": "T",
-    "withAltGraph": "₺",
-    "withAltGraphShift": "Ê"
+    "withAltGr": "₺",
+    "withShiftAltGr": "Ê"
   },
   "KeyI": {
-    "unmodified": "n",
+    "value": "n",
     "withShift": "N",
-    "withAltGraph": null,
-    "withAltGraphShift": "ˆ"
+    "withAltGr": null,
+    "withShiftAltGr": "ˆ"
   },
   "KeyJ": {
-    "unmodified": "k",
+    "value": "k",
     "withShift": "K",
-    "withAltGraph": null,
-    "withAltGraphShift": "©"
+    "withAltGr": null,
+    "withShiftAltGr": "©"
   },
   "KeyK": {
-    "unmodified": "m",
+    "value": "m",
     "withShift": "M",
-    "withAltGraph": "µ",
-    "withAltGraphShift": "˜"
+    "withAltGr": "µ",
+    "withShiftAltGr": "˜"
   },
   "KeyL": {
-    "unmodified": "l",
+    "value": "l",
     "withShift": "L",
-    "withAltGraph": "¬",
-    "withAltGraphShift": "£"
+    "withAltGr": "¬",
+    "withShiftAltGr": "£"
   },
   "KeyM": {
-    "unmodified": "s",
+    "value": "s",
     "withShift": "S",
-    "withAltGraph": "§",
-    "withAltGraphShift": "~"
+    "withAltGr": "§",
+    "withShiftAltGr": "~"
   },
   "KeyN": {
-    "unmodified": "z",
+    "value": "z",
     "withShift": "Z",
-    "withAltGraph": "Ω",
-    "withAltGraphShift": "Û"
+    "withAltGr": "Ω",
+    "withShiftAltGr": "Û"
   },
   "KeyO": {
-    "unmodified": "h",
+    "value": "h",
     "withShift": "H",
-    "withAltGraph": null,
-    "withAltGraphShift": "Ó"
+    "withAltGr": null,
+    "withShiftAltGr": "Ó"
   },
   "KeyP": {
-    "unmodified": "p",
+    "value": "p",
     "withShift": "P",
-    "withAltGraph": "π",
-    "withAltGraphShift": "∏"
+    "withAltGr": "π",
+    "withShiftAltGr": "∏"
   },
   "KeyQ": {
-    "unmodified": "f",
+    "value": "f",
     "withShift": "F",
-    "withAltGraph": "ƒ",
-    "withAltGraphShift": "Ï"
+    "withAltGr": "ƒ",
+    "withShiftAltGr": "Ï"
   },
   "KeyR": {
-    "unmodified": "ı",
+    "value": "ı",
     "withShift": "I",
-    "withAltGraph": "^",
-    "withAltGraphShift": "È"
+    "withAltGr": "^",
+    "withShiftAltGr": "È"
   },
   "KeyS": {
-    "unmodified": "i",
+    "value": "i",
     "withShift": "İ",
-    "withAltGraph": null,
-    "withAltGraphShift": "∞"
+    "withAltGr": null,
+    "withShiftAltGr": "∞"
   },
   "KeyT": {
-    "unmodified": "o",
+    "value": "o",
     "withShift": "O",
-    "withAltGraph": "ø",
-    "withAltGraphShift": "Ø"
+    "withAltGr": "ø",
+    "withShiftAltGr": "Ø"
   },
   "KeyU": {
-    "unmodified": "r",
+    "value": "r",
     "withShift": "R",
-    "withAltGraph": "®",
-    "withAltGraphShift": "Â"
+    "withAltGr": "®",
+    "withShiftAltGr": "Â"
   },
   "KeyV": {
-    "unmodified": "c",
+    "value": "c",
     "withShift": "C",
-    "withAltGraph": "ç",
-    "withAltGraphShift": "˚"
+    "withAltGr": "ç",
+    "withShiftAltGr": "˚"
   },
   "KeyW": {
-    "unmodified": "g",
+    "value": "g",
     "withShift": "G",
-    "withAltGraph": "¶",
-    "withAltGraphShift": "`"
+    "withAltGr": "¶",
+    "withShiftAltGr": "`"
   },
   "KeyX": {
-    "unmodified": "ö",
+    "value": "ö",
     "withShift": "Ö",
-    "withAltGraph": "¨",
-    "withAltGraphShift": "Ÿ"
+    "withAltGr": "¨",
+    "withShiftAltGr": "Ÿ"
   },
   "KeyY": {
-    "unmodified": "d",
+    "value": "d",
     "withShift": "D",
-    "withAltGraph": "∂",
-    "withAltGraphShift": "Î"
+    "withAltGr": "∂",
+    "withShiftAltGr": "Î"
   },
   "KeyZ": {
-    "unmodified": "j",
+    "value": "j",
     "withShift": "J",
-    "withAltGraph": "∆",
-    "withAltGraphShift": "Ô"
+    "withAltGr": "∆",
+    "withShiftAltGr": "Ô"
   },
   "Digit1": {
-    "unmodified": "1",
+    "value": "1",
     "withShift": "!",
-    "withAltGraph": "¡",
-    "withAltGraphShift": "·"
+    "withAltGr": "¡",
+    "withShiftAltGr": "·"
   },
   "Digit2": {
-    "unmodified": "2",
+    "value": "2",
     "withShift": "*",
-    "withAltGraph": "™",
-    "withAltGraphShift": "€"
+    "withAltGr": "™",
+    "withShiftAltGr": "€"
   },
   "Digit3": {
-    "unmodified": "3",
+    "value": "3",
     "withShift": "\"",
-    "withAltGraph": "“",
-    "withAltGraphShift": "”"
+    "withAltGr": "“",
+    "withShiftAltGr": "”"
   },
   "Digit4": {
-    "unmodified": "4",
+    "value": "4",
     "withShift": "'",
-    "withAltGraph": "‘",
-    "withAltGraphShift": "’"
+    "withAltGr": "‘",
+    "withShiftAltGr": "’"
   },
   "Digit5": {
-    "unmodified": "5",
+    "value": "5",
     "withShift": "(",
-    "withAltGraph": "[",
-    "withAltGraphShift": "{"
+    "withAltGr": "[",
+    "withShiftAltGr": "{"
   },
   "Digit6": {
-    "unmodified": "6",
+    "value": "6",
     "withShift": "/",
-    "withAltGraph": "|",
-    "withAltGraphShift": "\\"
+    "withAltGr": "|",
+    "withShiftAltGr": "\\"
   },
   "Digit7": {
-    "unmodified": "7",
+    "value": "7",
     "withShift": ")",
-    "withAltGraph": "]",
-    "withAltGraphShift": "}"
+    "withAltGr": "]",
+    "withShiftAltGr": "}"
   },
   "Digit8": {
-    "unmodified": "8",
+    "value": "8",
     "withShift": "_",
-    "withAltGraph": "•",
-    "withAltGraphShift": "°"
+    "withAltGr": "•",
+    "withShiftAltGr": "°"
   },
   "Digit9": {
-    "unmodified": "9",
+    "value": "9",
     "withShift": "%",
-    "withAltGraph": "«",
-    "withAltGraphShift": "»"
+    "withAltGr": "«",
+    "withShiftAltGr": "»"
   },
   "Digit0": {
-    "unmodified": "0",
+    "value": "0",
     "withShift": ":",
-    "withAltGraph": "º",
-    "withAltGraphShift": "÷"
+    "withAltGr": "º",
+    "withShiftAltGr": "÷"
   },
   "Space": {
-    "unmodified": " ",
+    "value": " ",
     "withShift": " ",
-    "withAltGraph": " ",
-    "withAltGraphShift": " "
+    "withAltGr": " ",
+    "withShiftAltGr": " "
   },
   "Minus": {
-    "unmodified": "x",
+    "value": "x",
     "withShift": "X",
-    "withAltGraph": "≈",
-    "withAltGraphShift": "Ù"
+    "withAltGr": "≈",
+    "withShiftAltGr": "Ù"
   },
   "Equal": {
-    "unmodified": "q",
+    "value": "q",
     "withShift": "Q",
-    "withAltGraph": "œ",
-    "withAltGraphShift": "Œ"
+    "withAltGr": "œ",
+    "withShiftAltGr": "Œ"
   },
   "BracketLeft": {
-    "unmodified": ";",
+    "value": ";",
     "withShift": "$",
-    "withAltGraph": "…",
-    "withAltGraphShift": "¢"
+    "withAltGr": "…",
+    "withShiftAltGr": "¢"
   },
   "BracketRight": {
-    "unmodified": ">",
+    "value": ">",
     "withShift": "<",
-    "withAltGraph": "≥",
-    "withAltGraphShift": "≤"
+    "withAltGr": "≥",
+    "withShiftAltGr": "≤"
   },
   "Backslash": {
-    "unmodified": "=",
+    "value": "=",
     "withShift": "+",
-    "withAltGraph": "≠",
-    "withAltGraphShift": "±"
+    "withAltGr": "≠",
+    "withShiftAltGr": "±"
   },
   "Semicolon": {
-    "unmodified": "y",
+    "value": "y",
     "withShift": "Y",
-    "withAltGraph": "¥",
-    "withAltGraphShift": "Á"
+    "withAltGr": "¥",
+    "withShiftAltGr": "Á"
   },
   "Quote": {
-    "unmodified": "ş",
+    "value": "ş",
     "withShift": "Ş",
-    "withAltGraph": "æ",
-    "withAltGraphShift": "Æ"
+    "withAltGr": "æ",
+    "withShiftAltGr": "Æ"
   },
   "Backquote": {
-    "unmodified": "w",
+    "value": "w",
     "withShift": "W",
-    "withAltGraph": "∑",
-    "withAltGraphShift": "„"
+    "withAltGr": "∑",
+    "withShiftAltGr": "„"
   },
   "Comma": {
-    "unmodified": "b",
+    "value": "b",
     "withShift": "B",
-    "withAltGraph": "∫",
-    "withAltGraphShift": "ß"
+    "withAltGr": "∫",
+    "withShiftAltGr": "ß"
   },
   "Period": {
-    "unmodified": ".",
+    "value": ".",
     "withShift": "?",
-    "withAltGraph": "&",
-    "withAltGraphShift": "¿"
+    "withAltGr": "&",
+    "withShiftAltGr": "¿"
   },
   "Slash": {
-    "unmodified": ",",
+    "value": ",",
     "withShift": "-",
-    "withAltGraph": "–",
-    "withAltGraphShift": "—"
+    "withAltGr": "–",
+    "withShiftAltGr": "—"
   },
   "NumpadDivide": {
-    "unmodified": "/",
+    "value": "/",
     "withShift": "/",
-    "withAltGraph": "/",
-    "withAltGraphShift": "/"
+    "withAltGr": "/",
+    "withShiftAltGr": "/"
   },
   "NumpadMultiply": {
-    "unmodified": "*",
+    "value": "*",
     "withShift": "*",
-    "withAltGraph": "*",
-    "withAltGraphShift": "*"
+    "withAltGr": "*",
+    "withShiftAltGr": "*"
   },
   "NumpadSubtract": {
-    "unmodified": "-",
+    "value": "-",
     "withShift": "-",
-    "withAltGraph": "-",
-    "withAltGraphShift": "-"
+    "withAltGr": "-",
+    "withShiftAltGr": "-"
   },
   "NumpadAdd": {
-    "unmodified": "+",
+    "value": "+",
     "withShift": "+",
-    "withAltGraph": "+",
-    "withAltGraphShift": "+"
+    "withAltGr": "+",
+    "withShiftAltGr": "+"
   },
   "Numpad1": {
-    "unmodified": "1",
+    "value": "1",
     "withShift": "1",
-    "withAltGraph": "1",
-    "withAltGraphShift": "1"
+    "withAltGr": "1",
+    "withShiftAltGr": "1"
   },
   "Numpad2": {
-    "unmodified": "2",
+    "value": "2",
     "withShift": "2",
-    "withAltGraph": "2",
-    "withAltGraphShift": "2"
+    "withAltGr": "2",
+    "withShiftAltGr": "2"
   },
   "Numpad3": {
-    "unmodified": "3",
+    "value": "3",
     "withShift": "3",
-    "withAltGraph": "3",
-    "withAltGraphShift": "3"
+    "withAltGr": "3",
+    "withShiftAltGr": "3"
   },
   "Numpad4": {
-    "unmodified": "4",
+    "value": "4",
     "withShift": "4",
-    "withAltGraph": "4",
-    "withAltGraphShift": "4"
+    "withAltGr": "4",
+    "withShiftAltGr": "4"
   },
   "Numpad5": {
-    "unmodified": "5",
+    "value": "5",
     "withShift": "5",
-    "withAltGraph": "5",
-    "withAltGraphShift": "5"
+    "withAltGr": "5",
+    "withShiftAltGr": "5"
   },
   "Numpad6": {
-    "unmodified": "6",
+    "value": "6",
     "withShift": "6",
-    "withAltGraph": "6",
-    "withAltGraphShift": "6"
+    "withAltGr": "6",
+    "withShiftAltGr": "6"
   },
   "Numpad7": {
-    "unmodified": "7",
+    "value": "7",
     "withShift": "7",
-    "withAltGraph": "7",
-    "withAltGraphShift": "7"
+    "withAltGr": "7",
+    "withShiftAltGr": "7"
   },
   "Numpad8": {
-    "unmodified": "8",
+    "value": "8",
     "withShift": "8",
-    "withAltGraph": "8",
-    "withAltGraphShift": "8"
+    "withAltGr": "8",
+    "withShiftAltGr": "8"
   },
   "Numpad9": {
-    "unmodified": "9",
+    "value": "9",
     "withShift": "9",
-    "withAltGraph": "9",
-    "withAltGraphShift": "9"
+    "withAltGr": "9",
+    "withShiftAltGr": "9"
   },
   "Numpad0": {
-    "unmodified": "0",
+    "value": "0",
     "withShift": "0",
-    "withAltGraph": "0",
-    "withAltGraphShift": "0"
+    "withAltGr": "0",
+    "withShiftAltGr": "0"
   },
   "NumpadDecimal": {
-    "unmodified": ",",
+    "value": ",",
     "withShift": ",",
-    "withAltGraph": ",",
-    "withAltGraphShift": ","
+    "withAltGr": ",",
+    "withShiftAltGr": ","
   },
   "IntlBackslash": {
-    "unmodified": "§",
+    "value": "§",
     "withShift": "±",
-    "withAltGraph": null,
-    "withAltGraphShift": null
+    "withAltGr": null,
+    "withShiftAltGr": null
   },
   "NumpadEqual": {
-    "unmodified": "=",
+    "value": "=",
     "withShift": "=",
-    "withAltGraph": "=",
-    "withAltGraphShift": "="
+    "withAltGr": "=",
+    "withShiftAltGr": "="
   },
   "AudioVolumeUp": {
-    "unmodified": null,
+    "value": null,
     "withShift": "=",
-    "withAltGraph": null,
-    "withAltGraphShift": "="
+    "withAltGr": null,
+    "withShiftAltGr": "="
   }
 }

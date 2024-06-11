@@ -1,5 +1,5 @@
 {calculateSpecificity} = require 'clear-cut'
-KeyboardLayout = require '@axosoft/keyboard-layout'
+NativeKeymap = require 'native-keymap'
 
 MODIFIERS = new Set(['ctrl', 'alt', 'shift', 'cmd'])
 ENDS_IN_MODIFIER_REGEX = /(ctrl|alt|shift|cmd)$/
@@ -40,10 +40,10 @@ isLatinKeymap = (keymap) ->
     # To avoid exceptions, if the native keymap does not have entries for a key,
     # assume that key is latin.
     isLatin =
-      (not keymap.KeyA? or isLatinCharacter(keymap.KeyA.unmodified)) and
-      (not keymap.KeyS? or isLatinCharacter(keymap.KeyS.unmodified)) and
-      (not keymap.KeyD? or isLatinCharacter(keymap.KeyD.unmodified)) and
-      (not keymap.KeyF? or isLatinCharacter(keymap.KeyF.unmodified))
+      (not keymap.KeyA? or isLatinCharacter(keymap.KeyA.value)) and
+      (not keymap.KeyS? or isLatinCharacter(keymap.KeyS.value)) and
+      (not keymap.KeyD? or isLatinCharacter(keymap.KeyD.value)) and
+      (not keymap.KeyF? or isLatinCharacter(keymap.KeyF.value))
     LATIN_KEYMAP_CACHE.set(keymap, isLatin)
     isLatin
 
@@ -134,21 +134,23 @@ parseKeystroke = (keystroke) ->
   keys.push(keystroke.substring(keyStart)) if keyStart < keystroke.length
   keys
 
-exports.keystrokeForKeyboardEvent = (event, customKeystrokeResolvers) ->
+exports.keystrokeForKeyboardEvent = (event) ->
   {key, code, ctrlKey, altKey, shiftKey, metaKey} = event
 
-  currentLayout = KeyboardLayout.getCurrentKeyboardLayout()
+  currentLayout = NativeKeymap.getCurrentKeyboardLayout()
+  #                   macos              linux                  windows
+  currentLayoutName = currentLayout.id ? currentLayout.layout ? currentLayout.name
 
   if key is 'Dead'
-    if process.platform is 'darwin' and characters = KeyboardLayout.getCurrentKeymap()?[event.code]
-      if altKey and shiftKey and characters.withAltGraphShift?
-        key = characters.withAltGraphShift
-      else if altKey and characters.withAltGraph?
-        key = characters.withAltGraph
+    if process.platform is 'darwin' and characters = NativeKeymap.getKeyMap()?[event.code]
+      if altKey and shiftKey and characters.withShiftAltGr?
+        key = characters.withShiftAltGr
+      else if altKey and characters.withAltGr?
+        key = characters.withAltGr
       else if shiftKey and characters.withShift?
         key = characters.withShift
-      else if characters.unmodified?
-        key = characters.unmodified
+      else if characters.value?
+        key = characters.value
 
   if NUMPAD_KEY_NAMES_BY_KEYBOARD_EVENT_CODE[code]? and event.getModifierState('NumLock')
     key = NUMPAD_KEY_NAMES_BY_KEYBOARD_EVENT_CODE[code]
@@ -227,21 +229,21 @@ exports.keystrokeForKeyboardEvent = (event, customKeystrokeResolvers) ->
       # That issue was fixed in https://bugs.chromium.org/p/chromium/issues/detail?id=747358
       # Use US equivalent character for non-latin characters in keystrokes with modifiers
       # or when using the dvorak-qwertycmd layout and holding down the command key.
-      # if (key.length is 1 and not isLatinKeymap(KeyboardLayout.getCurrentKeymap())) or
-      if (not isLatinKeymap(KeyboardLayout.getCurrentKeymap())) or
-         (metaKey and currentLayout.indexOf('DVORAK-QWERTYCMD') > -1)
+      # if (key.length is 1 and not isLatinKeymap(NativeKeymap.getKeyMap())) or
+      if (not isLatinKeymap(NativeKeymap.getKeyMap())) or
+         (metaKey and currentLayoutName.indexOf('DVORAK-QWERTYCMD') > -1)
         usCharactersForKeyCode(event.code)
       # As of Chromium ~62, KeyboardEvent.key is now sent in its un-shifted
       # for writing system characters (`8` vs `*`) so we need to manually
       # fetch the shifted version to maintain our former keystroke output
       else if not isAltModifiedKey
-        KeyboardLayout.getCurrentKeymap()?[event.code]
+        NativeKeymap.getKeyMap()?[event.code]
 
     if characters
       if event.shiftKey
         key = characters.withShift
-      else if characters.unmodified?
-        key = characters.unmodified
+      else if characters.value?
+        key = characters.value
 
   # Work around https://bugs.chromium.org/p/chromium/issues/detail?id=766800
   # TODO: Remove this workaround when we are using an Electron version based on chrome M62
@@ -250,7 +252,7 @@ exports.keystrokeForKeyboardEvent = (event, customKeystrokeResolvers) ->
       if event.shiftKey
         key = characters.withShift
       else
-        key = characters.unmodified
+        key = characters.value
 
   keystroke = ''
   if key is 'ctrl' or (ctrlKey and event.type isnt 'keyup')
@@ -274,24 +276,14 @@ exports.keystrokeForKeyboardEvent = (event, customKeystrokeResolvers) ->
 
   keystroke = normalizeKeystroke("^#{keystroke}") if event.type is 'keyup'
 
-  if customKeystrokeResolvers?
-    for resolver in customKeystrokeResolvers
-      customKeystroke = resolver({
-        keystroke, event,
-        layoutName: KeyboardLayout.getCurrentKeyboardLayout(),
-        keymap: KeyboardLayout.getCurrentKeymap()
-      })
-      if customKeystroke
-        keystroke = normalizeKeystroke(customKeystroke)
-
   keystroke
 
 nonAltModifiedKeyForKeyboardEvent = (event) ->
-  if event.code and (characters = KeyboardLayout.getCurrentKeymap()?[event.code])
+  if event.code and (characters = NativeKeymap.getKeyMap()?[event.code])
     if event.shiftKey
       characters.withShift
     else
-      characters.unmodified
+      characters.value
 
 exports.MODIFIERS = MODIFIERS
 

@@ -1,274 +1,274 @@
 {
   "KeyA": {
-    "unmodified": "a",
+    "value": "a",
     "withShift": "A"
   },
   "KeyB": {
-    "unmodified": "x",
+    "value": "x",
     "withShift": "X"
   },
   "KeyC": {
-    "unmodified": "j",
+    "value": "j",
     "withShift": "J"
   },
   "KeyD": {
-    "unmodified": "e",
+    "value": "e",
     "withShift": "E"
   },
   "KeyE": {
-    "unmodified": ".",
+    "value": ".",
     "withShift": ">"
   },
   "KeyF": {
-    "unmodified": "u",
+    "value": "u",
     "withShift": "U"
   },
   "KeyG": {
-    "unmodified": "i",
+    "value": "i",
     "withShift": "I"
   },
   "KeyH": {
-    "unmodified": "d",
+    "value": "d",
     "withShift": "D"
   },
   "KeyI": {
-    "unmodified": "c",
+    "value": "c",
     "withShift": "C"
   },
   "KeyJ": {
-    "unmodified": "h",
+    "value": "h",
     "withShift": "H"
   },
   "KeyK": {
-    "unmodified": "t",
+    "value": "t",
     "withShift": "T"
   },
   "KeyL": {
-    "unmodified": "n",
+    "value": "n",
     "withShift": "N"
   },
   "KeyM": {
-    "unmodified": "m",
+    "value": "m",
     "withShift": "M"
   },
   "KeyN": {
-    "unmodified": "b",
+    "value": "b",
     "withShift": "B"
   },
   "KeyO": {
-    "unmodified": "r",
+    "value": "r",
     "withShift": "R"
   },
   "KeyP": {
-    "unmodified": "l",
+    "value": "l",
     "withShift": "L"
   },
   "KeyQ": {
-    "unmodified": "'",
+    "value": "'",
     "withShift": "\""
   },
   "KeyR": {
-    "unmodified": "p",
+    "value": "p",
     "withShift": "P"
   },
   "KeyS": {
-    "unmodified": "o",
+    "value": "o",
     "withShift": "O"
   },
   "KeyT": {
-    "unmodified": "y",
+    "value": "y",
     "withShift": "Y"
   },
   "KeyU": {
-    "unmodified": "g",
+    "value": "g",
     "withShift": "G"
   },
   "KeyV": {
-    "unmodified": "k",
+    "value": "k",
     "withShift": "K"
   },
   "KeyW": {
-    "unmodified": ",",
+    "value": ",",
     "withShift": "<"
   },
   "KeyX": {
-    "unmodified": "q",
+    "value": "q",
     "withShift": "Q"
   },
   "KeyY": {
-    "unmodified": "f",
+    "value": "f",
     "withShift": "F"
   },
   "KeyZ": {
-    "unmodified": ";",
+    "value": ";",
     "withShift": ":"
   },
   "Digit1": {
-    "unmodified": "1",
+    "value": "1",
     "withShift": "!"
   },
   "Digit2": {
-    "unmodified": "2",
+    "value": "2",
     "withShift": "@"
   },
   "Digit3": {
-    "unmodified": "3",
+    "value": "3",
     "withShift": "#"
   },
   "Digit4": {
-    "unmodified": "4",
+    "value": "4",
     "withShift": "$"
   },
   "Digit5": {
-    "unmodified": "5",
+    "value": "5",
     "withShift": "%"
   },
   "Digit6": {
-    "unmodified": "6",
+    "value": "6",
     "withShift": "^"
   },
   "Digit7": {
-    "unmodified": "7",
+    "value": "7",
     "withShift": "&"
   },
   "Digit8": {
-    "unmodified": "8",
+    "value": "8",
     "withShift": "*"
   },
   "Digit9": {
-    "unmodified": "9",
+    "value": "9",
     "withShift": "("
   },
   "Digit0": {
-    "unmodified": "0",
+    "value": "0",
     "withShift": ")"
   },
   "Space": {
-    "unmodified": " ",
+    "value": " ",
     "withShift": " "
   },
   "Minus": {
-    "unmodified": "[",
+    "value": "[",
     "withShift": "{"
   },
   "Equal": {
-    "unmodified": "]",
+    "value": "]",
     "withShift": "}"
   },
   "BracketLeft": {
-    "unmodified": "/",
+    "value": "/",
     "withShift": "?"
   },
   "BracketRight": {
-    "unmodified": "=",
+    "value": "=",
     "withShift": "+"
   },
   "Backslash": {
-    "unmodified": "\\",
+    "value": "\\",
     "withShift": "|"
   },
   "Semicolon": {
-    "unmodified": "s",
+    "value": "s",
     "withShift": "S"
   },
   "Quote": {
-    "unmodified": "-",
+    "value": "-",
     "withShift": "_"
   },
   "Backquote": {
-    "unmodified": "`",
+    "value": "`",
     "withShift": "~"
   },
   "Comma": {
-    "unmodified": "w",
+    "value": "w",
     "withShift": "W"
   },
   "Period": {
-    "unmodified": "v",
+    "value": "v",
     "withShift": "V"
   },
   "Slash": {
-    "unmodified": "z",
+    "value": "z",
     "withShift": "Z"
   },
   "NumpadDivide": {
-    "unmodified": "/",
+    "value": "/",
     "withShift": "/"
   },
   "NumpadMultiply": {
-    "unmodified": "*",
+    "value": "*",
     "withShift": "*"
   },
   "NumpadSubtract": {
-    "unmodified": "-",
+    "value": "-",
     "withShift": "-"
   },
   "NumpadAdd": {
-    "unmodified": "+",
+    "value": "+",
     "withShift": "+"
   },
   "Numpad1": {
-    "unmodified": null,
+    "value": null,
     "withShift": "1"
   },
   "Numpad2": {
-    "unmodified": null,
+    "value": null,
     "withShift": "2"
   },
   "Numpad3": {
-    "unmodified": null,
+    "value": null,
     "withShift": "3"
   },
   "Numpad4": {
-    "unmodified": null,
+    "value": null,
     "withShift": "4"
   },
   "Numpad5": {
-    "unmodified": null,
+    "value": null,
     "withShift": "5"
   },
   "Numpad6": {
-    "unmodified": null,
+    "value": null,
     "withShift": "6"
   },
   "Numpad7": {
-    "unmodified": null,
+    "value": null,
     "withShift": "7"
   },
   "Numpad8": {
-    "unmodified": null,
+    "value": null,
     "withShift": "8"
   },
   "Numpad9": {
-    "unmodified": null,
+    "value": null,
     "withShift": "9"
   },
   "Numpad0": {
-    "unmodified": null,
+    "value": null,
     "withShift": "0"
   },
   "NumpadDecimal": {
-    "unmodified": null,
+    "value": null,
     "withShift": "."
   },
   "IntlBackslash": {
-    "unmodified": "<",
+    "value": "<",
     "withShift": ">"
   },
   "NumpadEqual": {
-    "unmodified": "=",
+    "value": "=",
     "withShift": "="
   },
   "NumpadComma": {
-    "unmodified": ".",
+    "value": ".",
     "withShift": "."
   },
   "NumpadParenLeft": {
-    "unmodified": "(",
+    "value": "(",
     "withShift": "("
   },
   "NumpadParenRight": {
-    "unmodified": ")",
+    "value": ")",
     "withShift": ")"
   }
 }
