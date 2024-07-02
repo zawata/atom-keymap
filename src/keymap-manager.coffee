@@ -502,7 +502,7 @@ class KeymapManager
     if character = characterForKeyboardEvent(keydownEvent)
       textInputEvent = document.createEvent("TextEvent")
       textInputEvent.initTextEvent("textInput", true, true, window, character)
-      keydownEvent.path[0].dispatchEvent(textInputEvent)
+      keydownEvent.currentTarget.dispatchEvent(textInputEvent)
 
   # For testing purposes
   getOtherPlatforms: -> OtherPlatforms
